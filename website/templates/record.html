@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if record %}
+        First Name: {{ record.firstName }}<br/>
+
+        Last Name: {{ record.last_name }}<br/>
+        Email: {{ record.email }}    <br/>
+        Phone: {{ record.phone }}<br/>
+        City: {{ record.city }}<br/>
+    {% endif %}
+
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+    <a href="{% url 'delete_record' record.id %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'update_record' record.id %}" class="btn btn-secondary">Update</a>
+{% else %}
+    <h1>You must be logged in to view this record </h1>
+
+{% endif %}
+
+{% endblock %}
